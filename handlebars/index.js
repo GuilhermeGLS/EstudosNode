@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express()
 const handlebars = require("express-handlebars")
+const bodyParse = require("body-parser")
 
 // chamdno o sequilize
 const Sequelize = require('sequelize')
@@ -11,14 +12,18 @@ const Sequelize = require('sequelize')
     app.set('view engine', 'handlebars');
 
 // Criando conexão com o banco de dados mySql
-const sequelize = new Sequelize('test', 'root', 'Guim@$1806', {
+const sequelize = new Sequelize('test', 'root', '123456', {
     host: "localhost",
     dialect: 'mysql'
 });
 // Rotas
 
 app.get('/cad', (req, res) => {
-    res.send("Rota de Cadastro de Posts")
+    res.render("formulario")
+})
+
+app.post('/add', (req, res) => {
+    res.send('formulario recebido')
 })
 
 
