@@ -11,6 +11,10 @@ const Sequelize = require('sequelize')
     app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}));
     app.set('view engine', 'handlebars');
 
+// body parser
+app.use(bodyParse.urlencoded({extended: false}))
+app.use(bodyParse.json())
+
 // Criando conexão com o banco de dados mySql
 const sequelize = new Sequelize('test', 'root', '123456', {
     host: "localhost",
@@ -23,7 +27,7 @@ app.get('/cad', (req, res) => {
 })
 
 app.post('/add', (req, res) => {
-    res.send('formulario recebido')
+    res.send(`Texto: ${req.body.titulo} conteudo ${req.body.conteudo}`)
 })
 
 
